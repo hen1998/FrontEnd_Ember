@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mangaModelStoreContainer" CdmEntityContainer="mangaEntities">
+    <EntitySetMapping Name="TBL_AUTOR">
+      <EntityTypeMapping TypeName="mangaModel.TBL_AUTOR">
+        <MappingFragment StoreEntitySet="TBL_AUTOR">
+          <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+          <ScalarProperty Name="nombre_autor" ColumnName="nombre_autor" />
+          <ScalarProperty Name="fecha_nacimiento_autor" ColumnName="fecha_nacimiento_autor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CAPITULO">
+      <EntityTypeMapping TypeName="mangaModel.TBL_CAPITULO">
+        <MappingFragment StoreEntitySet="TBL_CAPITULO">
+          <ScalarProperty Name="id_capitulo" ColumnName="id_capitulo" />
+          <ScalarProperty Name="id_manga" ColumnName="id_manga" />
+          <ScalarProperty Name="titulo_capitulo" ColumnName="titulo_capitulo" />
+          <ScalarProperty Name="numero_capitulo" ColumnName="numero_capitulo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_EDITORIAL">
+      <EntityTypeMapping TypeName="mangaModel.TBL_EDITORIAL">
+        <MappingFragment StoreEntitySet="TBL_EDITORIAL">
+          <ScalarProperty Name="id_editorial" ColumnName="id_editorial" />
+          <ScalarProperty Name="nombre_editorial" ColumnName="nombre_editorial" />
+          <ScalarProperty Name="fundacion_editorial" ColumnName="fundacion_editorial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_MANGA">
+      <EntityTypeMapping TypeName="mangaModel.TBL_MANGA">
+        <MappingFragment StoreEntitySet="TBL_MANGA">
+          <ScalarProperty Name="id_manga" ColumnName="id_manga" />
+          <ScalarProperty Name="nombre_espaniol_manga" ColumnName="nombre_espaniol_manga" />
+          <ScalarProperty Name="id_autor" ColumnName="id_autor" />
+          <ScalarProperty Name="id_editorial" ColumnName="id_editorial" />
+          <ScalarProperty Name="logo_manga" ColumnName="logo_manga" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

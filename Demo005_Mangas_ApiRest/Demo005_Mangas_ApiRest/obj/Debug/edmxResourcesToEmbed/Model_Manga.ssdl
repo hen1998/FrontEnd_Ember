@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mangaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBL_AUTOR">
+    <Key>
+      <PropertyRef Name="id_autor" />
+    </Key>
+    <Property Name="id_autor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_autor" Type="varchar" MaxLength="50" />
+    <Property Name="fecha_nacimiento_autor" Type="date" />
+  </EntityType>
+  <EntityType Name="TBL_CAPITULO">
+    <Key>
+      <PropertyRef Name="id_capitulo" />
+    </Key>
+    <Property Name="id_capitulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_manga" Type="int" />
+    <Property Name="titulo_capitulo" Type="varchar" MaxLength="100" />
+    <Property Name="numero_capitulo" Type="int" />
+  </EntityType>
+  <EntityType Name="TBL_EDITORIAL">
+    <Key>
+      <PropertyRef Name="id_editorial" />
+    </Key>
+    <Property Name="id_editorial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_editorial" Type="varchar" MaxLength="50" />
+    <Property Name="fundacion_editorial" Type="date" />
+  </EntityType>
+  <EntityType Name="TBL_MANGA">
+    <Key>
+      <PropertyRef Name="id_manga" />
+    </Key>
+    <Property Name="id_manga" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre_espaniol_manga" Type="varchar" MaxLength="100" />
+    <Property Name="id_autor" Type="int" />
+    <Property Name="id_editorial" Type="int" />
+    <Property Name="logo_manga" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK_TBL_CAPITULO_TBL_MANGA">
+    <End Role="TBL_MANGA" Type="Self.TBL_MANGA" Multiplicity="0..1" />
+    <End Role="TBL_CAPITULO" Type="Self.TBL_CAPITULO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_MANGA">
+        <PropertyRef Name="id_manga" />
+      </Principal>
+      <Dependent Role="TBL_CAPITULO">
+        <PropertyRef Name="id_manga" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_MANGA_TBL_AUTOR">
+    <End Role="TBL_AUTOR" Type="Self.TBL_AUTOR" Multiplicity="0..1" />
+    <End Role="TBL_MANGA" Type="Self.TBL_MANGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_AUTOR">
+        <PropertyRef Name="id_autor" />
+      </Principal>
+      <Dependent Role="TBL_MANGA">
+        <PropertyRef Name="id_autor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBL_MANGA_TBL_EDITORIAL">
+    <End Role="TBL_EDITORIAL" Type="Self.TBL_EDITORIAL" Multiplicity="0..1" />
+    <End Role="TBL_MANGA" Type="Self.TBL_MANGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_EDITORIAL">
+        <PropertyRef Name="id_editorial" />
+      </Principal>
+      <Dependent Role="TBL_MANGA">
+        <PropertyRef Name="id_editorial" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mangaModelStoreContainer">
+    <EntitySet Name="TBL_AUTOR" EntityType="Self.TBL_AUTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_CAPITULO" EntityType="Self.TBL_CAPITULO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_EDITORIAL" EntityType="Self.TBL_EDITORIAL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBL_MANGA" EntityType="Self.TBL_MANGA" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBL_CAPITULO_TBL_MANGA" Association="Self.FK_TBL_CAPITULO_TBL_MANGA">
+      <End Role="TBL_MANGA" EntitySet="TBL_MANGA" />
+      <End Role="TBL_CAPITULO" EntitySet="TBL_CAPITULO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_MANGA_TBL_AUTOR" Association="Self.FK_TBL_MANGA_TBL_AUTOR">
+      <End Role="TBL_AUTOR" EntitySet="TBL_AUTOR" />
+      <End Role="TBL_MANGA" EntitySet="TBL_MANGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBL_MANGA_TBL_EDITORIAL" Association="Self.FK_TBL_MANGA_TBL_EDITORIAL">
+      <End Role="TBL_EDITORIAL" EntitySet="TBL_EDITORIAL" />
+      <End Role="TBL_MANGA" EntitySet="TBL_MANGA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
